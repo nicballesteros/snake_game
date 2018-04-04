@@ -1,32 +1,99 @@
+//to do
+/*
+1. food spawns on body is bad
+2. scoreboard
+3. multiplayer
+4. speed increase
+*/
+
 let s;
+let scl = 20;
+let food = new Food();
+let a,b,c,d = false;
 
 function setup() {
-    createCanvas(600, 600);
+    createCanvas(620, 620);
     s = new Snake();
+    frameRate(10);
+    
+    let tail = new Array();
+    
+    food.pickLocation();
+    
+    
 }
 
 function draw() {
+    if(s.eat(food))
+    {
+        food.pickLocation();
+    }
+    
     background(51);
+    s.death(false)
+    if(s.wall())
+    {
+        s.death(true);
+    }
+    if(s.getIsDead())
+    {
+        a = false;
+        b = false;
+        c = false;
+        d = false;
+    }
     s.update();
     s.show();
+    fill(255, 0, 100);
+    rect(food.x, food.y, scl, scl);
+    
+
 }
 
 function keyPressed()
 {
     if (keyCode === UP_ARROW)
     {
-        s.dir(0, -1);
+        if(!b)
+        {
+            s.dir(0, -1);
+            a = true;
+            b = false;
+            c = false;
+            d = false;
+        }
     }
     else if (keyCode === DOWN_ARROW)
     {
-        s.dir(0,1);
+        if(!a)
+        {
+            s.dir(0,1);
+            a = false;
+            b = true;
+            c = false;
+            d = false;
+        }
     }
     else if (keyCode === LEFT_ARROW)
     {
-        s.dir(-1,0);
+        if(!d)
+        {
+            s.dir(-1,0);
+            a = false;
+            b = false;
+            c = true;
+            d = false;
+        }
     }
     else if (keyCode === RIGHT_ARROW)
     {
-        s.dir(1,0);
+        if(!c)
+        {
+            s.dir(1,0);
+            a = false;
+            b = false;
+            c = false;
+            d = true;
+        }
     }
 }
