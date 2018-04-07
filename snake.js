@@ -116,6 +116,20 @@ class Snake
             return true;
         }
     }
+    
+    getTailArr()
+    {
+        return this.tail;
+    }
+    
+    getHead()
+    {
+        let obj = {
+            x: this.x,
+            y: this.y
+        }
+        return obj;
+    }
 }
 
 

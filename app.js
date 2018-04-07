@@ -18,7 +18,9 @@ function setup() {
     
     let tail = new Array();
     
-    food.pickLocation();
+    let arr = s.getTailArr();
+    arr.push(s.getHead());
+    food.pickLocation(arr);
     
     
 }
@@ -26,7 +28,10 @@ function setup() {
 function draw() {
     if(s.eat(food))
     {
-        food.pickLocation();
+        let arr = s.getTailArr();
+        console.log(arr);
+        arr.push(s.getHead());
+        food.pickLocation(arr);
     }
     
     background(51);
